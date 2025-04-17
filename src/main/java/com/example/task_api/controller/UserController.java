@@ -17,18 +17,16 @@ import java.util.Optional;
 @RequestMapping("api/users")
 public class UserController {
 
-    private final UserRepository userRepo;
     private final UserTaskService userTaskService;
 
     @Autowired
-    public UserController(UserRepository userRepo, UserTaskService userTaskService){
+    public UserController(UserTaskService userTaskService){
         this.userTaskService = userTaskService;
-        this.userRepo = userRepo;
     }
 
     @GetMapping
-    public List<User> getAllUsers(){
-        return userRepo.findAll();
+    public List<UserDTO> getAllUsers(){
+        return userTaskService.getAllUsers();
     }
 
     @GetMapping("/{id}")

@@ -25,7 +25,7 @@ public class TaskController {
     }
 
     @GetMapping
-    public List<Task> getAllTasks() {
+    public List<TaskDTO> getAllTasks() {
         return userTaskService.getAllTasks();
     }
 
