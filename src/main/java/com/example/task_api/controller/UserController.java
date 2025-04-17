@@ -1,8 +1,10 @@
 package com.example.task_api.controller;
 
 
+import com.example.task_api.dto.UserDTO;
 import com.example.task_api.model.User;
 import com.example.task_api.repository.UserRepository;
+import com.example.task_api.service.UserTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +18,11 @@ import java.util.Optional;
 public class UserController {
 
     private final UserRepository userRepo;
+    private final UserTaskService userTaskService;
 
     @Autowired
-    public UserController(UserRepository userRepo){
+    public UserController(UserRepository userRepo, UserTaskService userTaskService){
+        this.userTaskService = userTaskService;
         this.userRepo = userRepo;
     }
 
@@ -28,59 +32,41 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User getById(@PathVariable Long id){
-        return userRepo.getById(id);
+    public UserDTO getById(@PathVariable Long id){
+        return userTaskService.getUserById(id);
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user){
+    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO){
 
-        System.out.println("Received user: " + user.getName() + ", " + user.getEmail());
+        System.out.println("Received user: " + userDTO.getName() + ", " + userDTO.getEmail());
+        userTaskService.createUser(userDTO);
 
-        userRepo.save(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User updatedUser){
-        Optional<User> temp = userRepo.findById(id);
+    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO updatedUser){
 
-        if(temp.isPresent()){
-            User user = temp.get();
+        UserDTO temp = userTaskService.getUserById(id);
 
-            user.setId(id);
-            user.setName(updatedUser.getName());
-            user.setEmail(updatedUser.getEmail());
-
-            userRepo.save(user);
-        }else{
-            updatedUser.setId(id);
-            userRepo.save(updatedUser);
-        }
+        userTaskService.createUser(temp);
 
         return new ResponseEntity<>(updatedUser, HttpStatus.CREATED);
     }
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<User> deleteUser(@PathVariable Long id){
-        if(userRepo.findById(id).isPresent()){
-            User deletedUser = userRepo.findById(id).get();
-            userRepo.deleteById(id);
-            return new ResponseEntity<>(deletedUser, HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<UserDTO> deleteUser(@PathVariable Long id){
+        userTaskService.deleteUserById(id);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/search")
-    public ResponseEntity<User> getUserByEmail(@RequestParam String email){
-        Optional<User> user = userRepo.findByEmail(email);
+    public ResponseEntity<UserDTO> getUserByEmail(@RequestParam String email){
+        UserDTO userDTO = userTaskService.getUserByEmail(email);
 
-        if(user.isPresent()){
-            return new ResponseEntity<>(user.get(), HttpStatus.FOUND);
-        }else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(userDTO, HttpStatus.FOUND);
     }
 }

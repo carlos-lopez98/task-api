@@ -1,6 +1,7 @@
 package com.example.task_api.controller;
 
 import com.example.task_api.dto.TaskDTO;
+import com.example.task_api.dto.UserDTO;
 import com.example.task_api.model.Task;
 import com.example.task_api.model.User;
 import com.example.task_api.repository.TaskRepository;
@@ -16,12 +17,10 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api/tasks")
 public class TaskController {
-    private final TaskRepository taskRepo;
     private final UserTaskService userTaskService;
 
     @Autowired
     public TaskController(UserTaskService userTaskService, TaskRepository taskRepo) {
-        this.taskRepo = taskRepo;
         this.userTaskService = userTaskService;
     }
 
@@ -41,10 +40,7 @@ public class TaskController {
     }
 
     @GetMapping("/{id}")
-    public User getByTaskId(@PathVariable Long id) {
-        Task task = taskRepo.getById(id);
-        return task.getUser();
+    public UserDTO getUserByTaskId(@PathVariable Long id) {
+      return userTaskService.getUserByTaskId(id);
     }
-
-
 }
