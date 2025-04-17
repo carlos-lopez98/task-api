@@ -31,7 +31,7 @@ A personal review project for reinforcing Spring Boot fundamentals, JPA relation
    git clone https://github.com/yourusername/task-buddy-api.git
    cd task-buddy-api
    ```
-2. **Configure Environment Variables
+2. **Configure Environment Variables**
 ```bash
 export DB_URL=jdbc:postgresql://localhost:5432/yourdatbasename
 export DB_USERNAME=your_db_user
@@ -79,12 +79,3 @@ curl http://localhost:8080/api/tasks/user/1
 ```
 
 ---
-
-## 📥 Fork & Clone
-
-To clone the repository:
-
-```bash
-git clone https://github.com/carlos-lopez98/task-api.git
-cd task-buddy-api
-```
