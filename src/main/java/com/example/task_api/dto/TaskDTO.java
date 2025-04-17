@@ -4,6 +4,12 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+/**
+ * Data Transfer Object for transferring Task data between layers.
+ * Contains simplified task details without exposing internal entity structure.
+ *
+ * @author CJL
+ */
 @NoArgsConstructor
 public class TaskDTO {
 

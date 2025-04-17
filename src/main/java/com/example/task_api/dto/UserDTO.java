@@ -1,11 +1,13 @@
 package com.example.task_api.dto;
 
-import com.example.task_api.model.Task;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * Data Transfer Object for transferring User data between layers.
+ * Contains essential user information without exposing sensitive or relational details.
+ *
+ * @author CJL
+ */
 @NoArgsConstructor
 public class UserDTO {
 
