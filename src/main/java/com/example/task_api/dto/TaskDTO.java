@@ -13,9 +13,6 @@ public class TaskDTO {
     private LocalDateTime createdAt = LocalDateTime.now();
     private String username;
 
-    public TaskDTO(){
-    }
-
     public TaskDTO(Long id, String title, String description, LocalDateTime createdAt, String username){
         this.id = id;
         this.title = title;

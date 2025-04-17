@@ -35,6 +35,10 @@ public class User {
     //Set's the creation timestamp to now
     private LocalDateTime createdAt = LocalDateTime.now();
 
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> tasks = new ArrayList<>();
 
