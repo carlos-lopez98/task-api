@@ -33,8 +33,12 @@ public class UserController {
     }
 
     @PostMapping
-    public User createUser(User user){
-        return userRepo.save(user);
+    public ResponseEntity<User> createUser(@RequestBody User user){
+
+        System.out.println("Received user: " + user.getName() + ", " + user.getEmail());
+
+        userRepo.save(user);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PostMapping("/{id}")
