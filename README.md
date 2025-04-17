@@ -33,7 +33,7 @@ A personal review project for reinforcing Spring Boot fundamentals, JPA relation
    ```
 2. **Configure Environment Variables**
 ```bash
-export DB_URL=jdbc:postgresql://localhost:5432/yourdatbasename
+export DB_URL=jdbc:postgresql://localhost:5432/yourdatabasename
 export DB_USERNAME=your_db_user
 export DB_PASSWORD=your_db_password
 source ~/.bashrc  # or source ~/.zshrc
@@ -57,7 +57,7 @@ curl http://localhost:8080/api/users/1
 ```
 **Get user by email**
 ```bash
-curl "http://localhost:8080/api/users/search?email=carlos@example.com"
+curl "http://localhost:8080/api/users/search?email=name@example.com"
 ```
 **Get all Tasks**
 ```bash
