@@ -8,9 +8,7 @@ import com.example.task_api.model.User;
 public class UserMapper {
 
     public static UserDTO maskToDTO(User user) {
-
         UserDTO dto = new UserDTO();
-
         dto.setEmail(user.getEmail());
         dto.setName(user.getName());
         dto.setId(user.getId());
@@ -21,7 +19,6 @@ public class UserMapper {
 
     public static User maskToEntity(UserDTO dto) {
         User entity = new User();
-
         entity.setEmail(dto.getEmail());
         entity.setName(dto.getName());
         entity.setId(dto.getId());

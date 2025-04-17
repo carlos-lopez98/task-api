@@ -13,7 +13,7 @@ public class TaskMapper {
                 task.getTitle(),
                 task.getDescription(),
                 task.getCreatedAt(),
-                task.getUser().getName());
+                task.getUser().getId());
     }
 
     public static Task maskToEntity(TaskDTO taskDTO, User user) {

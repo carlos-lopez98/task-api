@@ -11,22 +11,22 @@ public class TaskDTO {
     private String title;
     private String description;
     private LocalDateTime createdAt = LocalDateTime.now();
-    private String username;
+    private Long userid;
 
-    public TaskDTO(Long id, String title, String description, LocalDateTime createdAt, String username){
+    public TaskDTO(Long id, String title, String description, LocalDateTime createdAt, Long userid){
         this.id = id;
         this.title = title;
         this.description = description;
         this.createdAt = createdAt;
-        this.username = username;
+        this.userid = userid;
     }
 
-    public String getUsername() {
-        return username;
+    public Long getUserid() {
+        return userid;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserid(Long userid) {
+        this.userid = userid;
     }
 
     public Long getId() {
